@@ -7,10 +7,21 @@ import {Square} from './components/square.jsx'
 import {TURNS, combos} from './constants/constants.js'
 import {WinnerModal} from './components/winnerModal.jsx'
 
+import {resetSave, saveGame} from './store/index.js'
+
 
 function App() {
-  const [board, setBoard] = useState(Array(9).fill(null))
-  const [turn, setTurn] = useState(TURNS.x)
+  const [board, setBoard] = useState(()=>{
+    const boardFromStorage = window.localStorage.getItem('board')
+    if (boardFromStorage) return JSON.parse(boardFromStorage)
+    return Array(9).fill(null)
+  })
+
+  const [turn, setTurn] = useState(() => {
+    const turnFromStorage = window.localStorage.getItem('turn')
+    if (turnFromStorage) return turnFromStorage
+    return TURNS.x
+  })
   const [winner, setWinner] = useState(null)
 
 
@@ -48,6 +59,8 @@ function App() {
     const newTurn = turn === TURNS.x ? TURNS.o : TURNS.x
     setTurn(newTurn)
 
+    saveGame(newBoard, newTurn)
+
     const newWinner = checkWinner(newBoard)
     if (newWinner) {
       // console.log('Gano', newWinner);
@@ -61,6 +74,8 @@ function App() {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.x)
     setWinner(null)
+
+    resetSave()
   }
 
   return (
