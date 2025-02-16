@@ -1,0 +1,77 @@
+article {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    width: 260px;
+    padding: 0 10px;
+}
+
+article header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+article header img {
+    margin-right: 10px;
+}
+
+article header div {
+    display: flex;
+    flex-direction: column;
+    color: white;
+}
+
+article header div strong {
+    font-size: 16px;
+}
+
+article header div span {
+    font-size: 12px;
+    color: #a7a7a7;
+}
+
+article aside button {
+    border: none;
+    border-radius: 999px;
+    padding: 5px 10px;
+    border: 1px solid #000;
+    /* color: white; */
+    cursor: pointer;
+    
+    transition: .3s ease background-color;
+}
+
+article aside button:hover {
+    background-color: transparent;
+    color: white;
+    border-color: #a7a7a7;
+}
+
+article aside button .stop-follow {
+    display: none;
+}
+
+article aside button.following {
+    background-color: transparent;
+    color: white;
+    width: 130px;
+    border-color: #a7a7a7;
+}
+
+article aside button.following:hover {
+    background-color: rgba(160, 26, 26, 0.204);
+    color: #af2323;
+    border-color: #af2323;
+    transition: .3s ease all;
+}
+
+article aside button.following:hover .stop-follow {
+    display: block;
+}
+
+article aside button.following:hover .follow-text {
+    display: none;
+}
